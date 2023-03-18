@@ -1,11 +1,8 @@
 ﻿using TwitchLib.Client.Models;
 
-namespace BenjaminAbt.Twitch.MediatR.Notifications
-{
-    public class TwitchChannelMessageNotification : TwitchNotification
-    {
-        public TwitchChannelMessageNotification(ITwitchChannelLink channelLink, ChatMessage chatMessage) : base(channelLink)
-        {
+namespace BenjaminAbt.Twitch.MediatR.Notifications {
+    public class TwitchChannelMessageNotification : TwitchNotification {
+        public TwitchChannelMessageNotification(ITwitchChannelLink channelLink, ChatMessage chatMessage) : base(channelLink) {
             ChatMessage = chatMessage;
         }
 

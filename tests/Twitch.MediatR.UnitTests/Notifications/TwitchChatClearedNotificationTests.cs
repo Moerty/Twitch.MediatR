@@ -1,15 +1,12 @@
 ﻿using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchChatClearedNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchChatClearedNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             TwitchChatClearedNotification

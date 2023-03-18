@@ -4,20 +4,18 @@ using FluentAssertions;
 using Moq;
 using TwitchLib.Client.Enums;
 using TwitchLib.Client.Models;
-using Xunit;
+using NUnit.Framework;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchNewSubscriberNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchNewSubscriberNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
-            Subscriber subscriber = new Subscriber(null, "", Color.Black, "Benjamin Abt",
-                "", "", "", "", "", "", SubscriptionPlan.Prime,
+            Subscriber subscriber = new Subscriber(null, null, "", Color.Black, "Benjamin Abt",
+                "", "", "", "", "", "", "", true, "", "", SubscriptionPlan.Prime,
                 "", "", "", true, true, true, true, "", UserType.Admin, "", "");
+
             TwitchNewSubscriberNotification
                 notification = new TwitchNewSubscriberNotification(cLink.Object, "BenAbt", subscriber);
 

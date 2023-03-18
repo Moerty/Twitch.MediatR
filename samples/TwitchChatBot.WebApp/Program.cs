@@ -1,13 +1,9 @@
-
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace BenjaminAbt.TwitchChatBot.WebApp
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+namespace BenjaminAbt.TwitchChatBot.WebApp {
+    public class Program {
+        public static void Main(string[] args) {
             CreateWebHostBuilder(args).Build().Run();
         }
 

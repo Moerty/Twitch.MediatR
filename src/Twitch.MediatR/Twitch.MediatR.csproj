@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>7.1</LangVersion>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BenjaminAbt.Twitch.MediatR</AssemblyName>
     <RootNamespace>BenjaminAbt.Twitch.MediatR</RootNamespace>
     <PackageId>Twitch.MediatR</PackageId>
@@ -19,10 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="6.0.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
-    <PackageReference Include="TwitchLib" Version="3.0.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="TwitchLib" Version="3.5.3" />
   </ItemGroup>
 
 </Project>

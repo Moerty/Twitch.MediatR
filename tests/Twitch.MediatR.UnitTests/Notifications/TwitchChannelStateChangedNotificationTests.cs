@@ -2,16 +2,13 @@
 using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
+using NUnit.Framework;
 using TwitchLib.Client.Models;
-using Xunit;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchChannelStateChangedNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchChannelStateChangedNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             ChannelState channelState = new ChannelState(true, true, true, 1, true, "de", "BenAbt", TimeSpan.Zero, true, "123");

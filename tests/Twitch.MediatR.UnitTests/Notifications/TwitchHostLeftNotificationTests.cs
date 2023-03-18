@@ -2,18 +2,16 @@
 using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchHostLeftNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchHostLeftNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             EventArgs eventArgs = new EventArgs();
+
             TwitchHostLeftNotification
                 notification = new TwitchHostLeftNotification(cLink.Object, eventArgs);
 

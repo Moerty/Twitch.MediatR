@@ -2,18 +2,16 @@
 using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchMessageThrottledNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchMessageThrottledNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             TimeSpan timeSpan = new TimeSpan(1, 2, 3, 4);
+
             TwitchMessageThrottledNotification
                 notification = new TwitchMessageThrottledNotification(cLink.Object, "Hello World", 999, timeSpan, 1);
 

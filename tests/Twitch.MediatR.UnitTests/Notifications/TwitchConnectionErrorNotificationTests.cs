@@ -1,19 +1,17 @@
 ﻿using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
+using NUnit.Framework;
 using TwitchLib.Client.Models;
-using Xunit;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchConnectionErrorNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchConnectionErrorNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             ErrorEvent errorEvent = new ErrorEvent();
+
             TwitchConnectionErrorNotification
                 notification = new TwitchConnectionErrorNotification(cLink.Object, "SchwabenCode", errorEvent);
 

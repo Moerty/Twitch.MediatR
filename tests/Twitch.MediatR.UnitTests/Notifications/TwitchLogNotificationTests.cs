@@ -2,18 +2,16 @@
 using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
-using Xunit;
+using NUnit.Framework;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchLogNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchLogNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             DateTime dateTime = DateTime.Now;
+
             TwitchLogNotification
                 notification = new TwitchLogNotification(cLink.Object, "SchwabenCode", "Data", dateTime);
 

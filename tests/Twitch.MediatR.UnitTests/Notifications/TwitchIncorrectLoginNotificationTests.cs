@@ -1,19 +1,17 @@
 ﻿using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using Moq;
+using NUnit.Framework;
 using TwitchLib.Client.Exceptions;
-using Xunit;
 
-namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications
-{
-    public class TwitchIncorrectLoginNotificationTests
-    {
-        [Fact]
-        public void PropertyTest()
-        {
+namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
+    public class TwitchIncorrectLoginNotificationTests {
+        [Test]
+        public void PropertyTest() {
             Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
 
             ErrorLoggingInException exception = new ErrorLoggingInException("ircData", "BenAbt");
+
             TwitchIncorrectLoginNotification
                 notification = new TwitchIncorrectLoginNotification(cLink.Object, exception);
 
