@@ -8,7 +8,7 @@ namespace BenjaminAbt.Twitch.MediatR.DependencyInjection {
             services.Configure(twitchOptions);
 
             services.AddScoped<ITwitchEventProxy, TwitchEventProxy>();
-            services.AddScoped<ITwitchChannelLinkProvider, TwitchChannelLinkProvider>();
+            services.AddSingleton<ITwitchChannelLinkProvider, TwitchChannelLinkProvider>();
             services.AddTransient<ITwitchChannelLink, TwitchChannelLink>();
 
             services.AddMediatR(config => {
