@@ -14,7 +14,7 @@ namespace BenjaminAbt.Twitch.MediatR {
             foreach (string channel in config.Channels) {
                 // we need an own scope for each link
                 IServiceScope scope = services.CreateScope();
-                ITwitchChannelLink channelLink = new TwitchChannelLink(eventProxy, config.UserName, config.AcessToken, channel);
+                ITwitchChannelLink channelLink = new TwitchChannelLink(eventProxy, config.UserName, config.AccessToken, channel);
 
 
                 _links.Add(channelLink, scope);
