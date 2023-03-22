@@ -11,7 +11,7 @@ namespace BenjaminAbt.Twitch.MediatR {
         }
 
         public async Task PublishAsync<T>(T notification) where T : ITwitchNotification {
-            await _mediator.Publish(notification).ConfigureAwait(false);
+            await _mediator.Publish(notification);
         }
     }
 }

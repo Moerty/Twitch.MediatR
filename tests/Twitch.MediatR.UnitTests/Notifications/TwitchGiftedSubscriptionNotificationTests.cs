@@ -11,10 +11,10 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchGiftedSubscriptionNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
 
-            GiftedSubscription giftedSubscription = new GiftedSubscription(
+            var giftedSubscription = new GiftedSubscription(
                 new List<KeyValuePair<string, string>>(),
                 new List<KeyValuePair<string, string>>(),
                 "color",
@@ -40,8 +40,7 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
                 UserType.Admin,
                 "1");
 
-            TwitchGiftedSubscriptionNotification
-                notification = new TwitchGiftedSubscriptionNotification(cLink.Object, "BenAbt", giftedSubscription);
+            var notification = new TwitchGiftedSubscriptionNotification(cLink.Object, "BenAbt", giftedSubscription);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);
@@ -50,30 +49,3 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
         }
     }
 }
-/*
-public GiftedSubscription(
-      List<KeyValuePair<string, string>> badges,
-      List<KeyValuePair<string, string>> badgeInfo,
-      string color,
-      string displayName,
-      string emotes,
-      string id,
-      string login,
-      bool isModerator,
-      string msgId,
-      string msgParamMonths,
-      string msgParamRecipientDisplayName,
-      string msgParamRecipientId,
-      string msgParamRecipientUserName,
-      string msgParamSubPlanName,
-      string msgMultiMonthDuration,
-      SubscriptionPlan msgParamSubPlan,
-      string roomId,
-      bool isSubscriber,
-      string systemMsg,
-      string systemMsgParsed,
-      string tmiSentTs,
-      bool isTurbo,
-      UserType userType,
-      string userId)
-      */

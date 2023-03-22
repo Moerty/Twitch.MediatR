@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchMessageThrottledNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            TimeSpan timeSpan = new TimeSpan(1, 2, 3, 4);
+            var timeSpan = new TimeSpan(1, 2, 3, 4);
 
-            TwitchMessageThrottledNotification
-                notification = new TwitchMessageThrottledNotification(cLink.Object, "Hello World", 999, timeSpan, 1);
+            var notification = new TwitchMessageThrottledNotification(cLink.Object, "Hello World", 999, timeSpan, 1);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

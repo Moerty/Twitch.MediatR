@@ -25,31 +25,31 @@ namespace BenjaminAbt.Twitch.MediatR {
         /// <summary>
         /// Connects to channel links on application start
         /// </summary>
-        public async Task StartAsync() {
+        public void Start() {
             foreach (var link in _links.Select(entry => entry.Key)) {
-                await link.ConnectAsync();
+                link.Connect();
             }
         }
 
         /// <summary>
         /// Disconnects channel links on application shutdown
         /// </summary>
-        public async Task StopAsync() {
+        public void Stop() {
             foreach (var link in _links.Select(entry => entry.Key)) {
-                await link.DisconnectAsync();
+                link.Disconnect();
             }
         }
 
-        public async ValueTask DisposeAsync() {
-            if (_links != null) {
-                await StopAsync();
+        public void Dispose() {
+            if (_links == null) return;
 
-                foreach (var scope in _links.Values) {
-                    scope.Dispose();
-                }
+            Stop();
 
-                _links = null;
+            foreach (var scope in _links.Values) {
+                scope.Dispose();
             }
+
+            _links = null;
         }
     }
 }

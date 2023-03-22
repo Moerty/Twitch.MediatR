@@ -7,10 +7,9 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchJoinedChannelNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            TwitchJoinedChannelNotification
-                notification = new TwitchJoinedChannelNotification(cLink.Object, "BenAbt", "SchwabenCode");
+            var notification = new TwitchJoinedChannelNotification(cLink.Object, "BenAbt", "SchwabenCode");
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

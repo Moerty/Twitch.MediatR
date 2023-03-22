@@ -14,6 +14,7 @@ namespace BenjaminAbt.Twitch.MediatR.DependencyInjection {
             services.AddMediatR(config => {
                 config.RegisterServicesFromAssemblies(mediatrAssemblies);
             });
+            
             return services;
         }
     }

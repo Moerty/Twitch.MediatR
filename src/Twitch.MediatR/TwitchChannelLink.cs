@@ -4,13 +4,17 @@ using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
 using BenjaminAbt.Twitch.MediatR.Notifications;
+using Microsoft.Extensions.Logging;
+using TwitchLib.Client.Enums;
 using TwitchLib.Client.Interfaces;
+using TwitchLib.Communication.Clients;
 using TwitchLib.Communication.Events;
+using TwitchLib.Communication.Models;
 
 namespace BenjaminAbt.Twitch.MediatR {
     public interface ITwitchChannelLink {
-        Task ConnectAsync();
-        Task DisconnectAsync();
+        void Connect();
+        void Disconnect();
         TwitchClient Client { get; }
     }
 
@@ -18,19 +22,31 @@ namespace BenjaminAbt.Twitch.MediatR {
         private readonly ITwitchEventProxy _eventProxy;
         public TwitchClient Client { get; }
 
-        public Task ConnectAsync() {
+        public void Connect() {
             Client.Connect();
-            return Task.CompletedTask;
         }
 
-        public Task DisconnectAsync() {
+        public void Disconnect() {
             Client.Disconnect();
-            return Task.CompletedTask;
         }
 
         public TwitchChannelLink(ITwitchEventProxy eventProxy, string userName, string accessToken, string channel) {
             _eventProxy = eventProxy;
-            Client = new TwitchClient();
+            
+            var clientOptions = new ClientOptions
+            {
+                MessagesAllowedInPeriod = 750,
+                ThrottlingPeriod = TimeSpan.FromSeconds(30),
+            };
+
+            var logger = LoggerFactory.Create(options => {
+                //options.AddConsole(); // HOW????
+            }).CreateLogger<TwitchClient>();
+
+            var customClient = new WebSocketClient(clientOptions);
+            Client = new TwitchClient(customClient, ClientProtocol.WebSocket, logger);
+            Client.Initialize(
+                new ConnectionCredentials(userName, accessToken), channel);
 
             Client.OnAnnouncement += async (s, e)
                 => await _eventProxy.PublishAsync(new TwitchAnnouncementNotification(this, e));
@@ -202,11 +218,6 @@ namespace BenjaminAbt.Twitch.MediatR {
 
             Client.OnUnaccountedFor += async (s, e)
                 => await _eventProxy.PublishAsync(new TwitchUnaccountedForNotification(this));
-
-
-            // Token by https://github.com/swiftyspiffy/twitch-token-generator
-            ConnectionCredentials credentials = new ConnectionCredentials(userName, accessToken);
-            Client.Initialize(credentials, channel);
         }
     }
 }

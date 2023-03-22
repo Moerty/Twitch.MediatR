@@ -10,14 +10,13 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchWhisperMessageNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            WhisperMessage whisperMessage = new WhisperMessage(null, "", Color.Black, "BenAbt",
+            var whisperMessage = new WhisperMessage(null, "", Color.Black, "BenAbt",
                 "", new EmoteSet("1:2-3", "Hello World"), "", "", "",
                 true, "", "", UserType.Admin);
 
-            TwitchWhisperMessageNotification
-                notification = new TwitchWhisperMessageNotification(cLink.Object, whisperMessage);
+            var notification = new TwitchWhisperMessageNotification(cLink.Object, whisperMessage);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

@@ -10,14 +10,13 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchNewSubscriberNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            Subscriber subscriber = new Subscriber(null, null, "", Color.Black, "Benjamin Abt",
+            var subscriber = new Subscriber(null, null, "", Color.Black, "Benjamin Abt",
                 "", "", "", "", "", "", "", true, "", "", SubscriptionPlan.Prime,
                 "", "", "", true, true, true, true, "", UserType.Admin, "", "");
 
-            TwitchNewSubscriberNotification
-                notification = new TwitchNewSubscriberNotification(cLink.Object, "BenAbt", subscriber);
+            var notification = new TwitchNewSubscriberNotification(cLink.Object, "BenAbt", subscriber);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

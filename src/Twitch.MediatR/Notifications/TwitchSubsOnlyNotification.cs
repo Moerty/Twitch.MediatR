@@ -6,8 +6,8 @@ public class TwitchSubsOnlyNotification : TwitchNotification {
 
     public TwitchSubsOnlyNotification(
         ITwitchChannelLink channelLink,
-        string channel,
-        string message)
+        string message,
+        string channel)
         : base(channelLink) {
         Channel = channel;
         Message = message;

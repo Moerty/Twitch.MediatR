@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading.Tasks;
 using BenjaminAbt.Twitch.MediatR.Notifications;
 using FluentAssertions;
 using MediatR;
@@ -11,11 +12,11 @@ using TwitchLib.Client.Models;
 namespace BenjaminAbt.Twitch.MediatR.AspNetCore.UnitTests {
     public class TwitchMiddlewareTests {
         [Test]
-        public void HandlerResolveTests() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+        public async Task HandlerResolveTests() {
+            var cLink = new Mock<ITwitchChannelLink>();
 
 
-            IServiceCollection services = new ServiceCollection();
+            var services = new ServiceCollection();
 
             // Register required services
             services.AddMediatR(config => {
@@ -23,12 +24,11 @@ namespace BenjaminAbt.Twitch.MediatR.AspNetCore.UnitTests {
             });
 
             // Build provider
-            IServiceProvider provider = services.BuildServiceProvider();
+            var provider = services.BuildServiceProvider();
 
             // get handler
-            IMediator mediatR = provider.GetRequiredService<IMediator>();
-            mediatR.Publish(new TwitchChannelMessageNotification(cLink.Object, null));
-
+            var mediatR = provider.GetRequiredService<IMediator>();
+            await mediatR.Publish(new TwitchChannelMessageNotification(cLink.Object, null));
         }
     }
 }

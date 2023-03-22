@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchExistingUsersDetectedNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            List<string> users = new List<string>();
+            var users = new List<string>();
 
-            TwitchExistingUsersDetectedNotification
-                notification = new TwitchExistingUsersDetectedNotification(cLink.Object, "BenAbt", users);
+            var notification = new TwitchExistingUsersDetectedNotification(cLink.Object, "BenAbt", users);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

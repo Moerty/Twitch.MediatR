@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchLogNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            DateTime dateTime = DateTime.Now;
+            var dateTime = DateTime.Now;
 
-            TwitchLogNotification
-                notification = new TwitchLogNotification(cLink.Object, "SchwabenCode", "Data", dateTime);
+            var notification = new TwitchLogNotification(cLink.Object, "SchwabenCode", "Data", dateTime);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

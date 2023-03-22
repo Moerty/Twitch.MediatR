@@ -11,8 +11,8 @@ namespace BenjaminAbt.Twitch.MediatR.AspNetCore {
             var twitchChannelLinkProvider = app.ApplicationServices.GetRequiredService<ITwitchChannelLinkProvider>();
 
             // handle life time jobs
-            life.ApplicationStarted.Register(async () => await twitchChannelLinkProvider.StartAsync());
-            life.ApplicationStopping.Register(async () => await twitchChannelLinkProvider.StopAsync());
+            life.ApplicationStarted.Register(twitchChannelLinkProvider.Start);
+            life.ApplicationStopping.Register(twitchChannelLinkProvider.Stop);
 
             return app;
         }

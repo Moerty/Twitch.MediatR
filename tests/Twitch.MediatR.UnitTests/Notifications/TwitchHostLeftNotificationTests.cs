@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchHostLeftNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            EventArgs eventArgs = new EventArgs();
+            var eventArgs = EventArgs.Empty;
 
-            TwitchHostLeftNotification
-                notification = new TwitchHostLeftNotification(cLink.Object, eventArgs);
+            var notification = new TwitchHostLeftNotification(cLink.Object, eventArgs);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

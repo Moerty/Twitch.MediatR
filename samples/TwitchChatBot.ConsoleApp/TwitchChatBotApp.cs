@@ -12,19 +12,23 @@ namespace BenjaminAbt.TwitchChatBot.ConsoleApp {
             _twitchChannelLinkProvider = twitchChannelLinkProvider;
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken) {
-            await _twitchChannelLinkProvider.StartAsync().ConfigureAwait(false);
+        public Task StartAsync(CancellationToken cancellationToken) {
+            _twitchChannelLinkProvider.Start();
+
+            return Task.CompletedTask;
         }
 
-        public async Task StopAsync(CancellationToken cancellationToken) {
-            await _twitchChannelLinkProvider.StopAsync().ConfigureAwait(false);
-        }
+        public Task StopAsync(CancellationToken cancellationToken) {
+            _twitchChannelLinkProvider.Stop();
 
+            return Task.CompletedTask;
+        }
+        
         public void Dispose() {
-            if (_twitchChannelLinkProvider != null) {
-                _twitchChannelLinkProvider.Dispose();
-                _twitchChannelLinkProvider = null;
-            }
+            if (_twitchChannelLinkProvider == null) return;
+
+            _twitchChannelLinkProvider.Dispose();
+            _twitchChannelLinkProvider = null;
         }
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace BenjaminAbt.TwitchChatBot.ConsoleApp {
     class Program {
         static async Task Main(string[] args) {
-            IHostBuilder builder = new HostBuilder()
+            var builder = new HostBuilder()
                 .ConfigureAppConfiguration((hostingContext, config) => {
                     config.SetBasePath(Directory.GetCurrentDirectory());
                     config.AddJsonFile("appsettings.json", optional: false);
@@ -27,7 +27,7 @@ namespace BenjaminAbt.TwitchChatBot.ConsoleApp {
                     );
 
                     // Register Log Ouput
-                    services.AddTransient<TextWriter>(_ => Console.Out);
+                    services.AddTransient(_ => Console.Out);
 
                     // Startup
                     services.AddHostedService<TwitchChatBotApp>();

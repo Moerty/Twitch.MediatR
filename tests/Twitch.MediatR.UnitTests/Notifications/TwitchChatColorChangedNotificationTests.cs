@@ -7,10 +7,9 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchChatColorChangedNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            TwitchChatColorChangedNotification
-                notification = new TwitchChatColorChangedNotification(cLink.Object, "BenAbt");
+            var notification = new TwitchChatColorChangedNotification(cLink.Object, "BenAbt");
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchIncorrectLoginNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            ErrorLoggingInException exception = new ErrorLoggingInException("ircData", "BenAbt");
+            var exception = new ErrorLoggingInException("ircData", "BenAbt");
 
-            TwitchIncorrectLoginNotification
-                notification = new TwitchIncorrectLoginNotification(cLink.Object, exception);
+            var notification = new TwitchIncorrectLoginNotification(cLink.Object, exception);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

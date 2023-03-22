@@ -13,11 +13,11 @@ namespace BenjaminAbt.TwitchChatBot.ConsoleApp.Handlers {
         }
 
         public async Task Handle(TwitchChannelMessageNotification request, CancellationToken cancellationToken = default) {
-            string channel = request.ChatMessage.Channel;
-            string user = request.ChatMessage.Username;
-            string message = request.ChatMessage.Message;
+            var channel = request.ChatMessage.Channel;
+            var user = request.ChatMessage.Username;
+            var message = request.ChatMessage.Message;
 
-            await _output.WriteLineAsync($"#{channel}: [{user}] {message}").ConfigureAwait(false); // string parameter does not support cancellation
+            await _output.WriteLineAsync($"#{channel}: [{user}] {message}"); // string parameter does not support cancellation
         }
     }
 }

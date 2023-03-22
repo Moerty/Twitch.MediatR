@@ -10,19 +10,18 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchChatCommandReceivedNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            EmoteSet emoteSet = new EmoteSet("0:2-1", "Hello World");
+            var emoteSet = new EmoteSet("0:2-1", "Hello World");
 
-            ChatMessage chatMessage = new ChatMessage("SchwabenCode", "123", "BenAbt", "Benjamin Abt", "001122",
+            var chatMessage = new ChatMessage("SchwabenCode", "123", "BenAbt", "Benjamin Abt", "001122",
                 Color.Black, emoteSet,
                 "Hello World", UserType.Admin, "BenAbt", "1", true, 1, "123", true, true, true, true, true, true, true, Noisy.True,
                 "Hello Irc World", ":-)", null, new CheerBadge(1), 1, 1);
 
-            ChatCommand chatCommand = new ChatCommand(chatMessage);
+            var chatCommand = new ChatCommand(chatMessage);
 
-            TwitchChatCommandReceivedNotification
-                notification = new TwitchChatCommandReceivedNotification(cLink.Object, chatCommand);
+            var notification = new TwitchChatCommandReceivedNotification(cLink.Object, chatCommand);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

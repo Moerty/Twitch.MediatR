@@ -6,12 +6,13 @@ using BenjaminAbt.Twitch.MediatR.Notifications;
 
 namespace BenjaminAbt.TwitchChatBot.WebApp.Handlers {
     public class TwitchChannelMessageNotificationHandler : INotificationHandler<TwitchChannelMessageNotification> {
-        public async Task Handle(TwitchChannelMessageNotification request, CancellationToken cancellationToken = default) {
+        public Task Handle(TwitchChannelMessageNotification request, CancellationToken cancellationToken = default) {
             var channel = request.ChatMessage.Channel;
             var response = $"Echo: {request.ChatMessage.Message}";
 
-            await request.ChannelLink.SendMessageAsync(channel, response)
-                .ConfigureAwait(false);
+            request.ChannelLink.SendMessage(channel, response);
+
+            return Task.CompletedTask;
         }
     }
 }

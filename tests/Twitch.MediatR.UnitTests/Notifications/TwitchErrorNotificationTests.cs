@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchErrorNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            Exception e = new Exception();
+            var e = new Exception();
 
-            TwitchErrorNotification
-                notification = new TwitchErrorNotification(cLink.Object, e);
+            var notification = new TwitchErrorNotification(cLink.Object, e);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

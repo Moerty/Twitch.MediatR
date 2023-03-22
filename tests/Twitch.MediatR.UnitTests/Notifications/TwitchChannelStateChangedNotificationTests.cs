@@ -9,10 +9,10 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchChannelStateChangedNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            ChannelState channelState = new ChannelState(true, true, true, 1, true, "de", "BenAbt", TimeSpan.Zero, true, "123");
-            TwitchChannelStateChangedNotification notification = new TwitchChannelStateChangedNotification(cLink.Object, "BenAbt", channelState);
+            var channelState = new ChannelState(true, true, true, 1, true, "de", "BenAbt", TimeSpan.Zero, true, "123");
+            var notification = new TwitchChannelStateChangedNotification(cLink.Object, "BenAbt", channelState);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);

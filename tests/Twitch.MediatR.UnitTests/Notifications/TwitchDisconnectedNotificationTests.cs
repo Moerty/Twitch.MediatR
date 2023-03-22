@@ -8,12 +8,11 @@ namespace BenjaminAbt.Twitch.MediatR.UnitTests.Notifications {
     public class TwitchDisconnectedNotificationTests {
         [Test]
         public void PropertyTest() {
-            Mock<ITwitchChannelLink> cLink = new Mock<ITwitchChannelLink>();
+            var cLink = new Mock<ITwitchChannelLink>();
 
-            OnDisconnectedEventArgs eventArgs = new OnDisconnectedEventArgs();
+            var eventArgs = new OnDisconnectedEventArgs();
 
-            TwitchDisconnectedNotification
-                notification = new TwitchDisconnectedNotification(cLink.Object, eventArgs);
+            var notification = new TwitchDisconnectedNotification(cLink.Object, eventArgs);
 
             notification.ChannelLink.Should().NotBeNull();
             notification.ChannelLink.Should().Be(cLink.Object);
